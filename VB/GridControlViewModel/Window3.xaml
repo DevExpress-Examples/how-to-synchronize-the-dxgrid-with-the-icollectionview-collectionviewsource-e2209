@@ -1,0 +1,24 @@
+﻿<Window x:Class="GridControlViewModel.Window3" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:local="clr-namespace:GridControlViewModel" Title="Window3" Height="600" Width="800">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock>Filter condition</TextBlock>
+            <ComboBox Name="filterComboBox" SelectedIndex="0" IsEditable="False">
+                <ComboBoxItem>All items</ComboBoxItem>
+                <ComboBoxItem>Even items</ComboBoxItem>
+                <ComboBoxItem>Odd items</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock>Filter Mode</TextBlock>
+            <ListBox SelectedIndex="0" SelectedValue="{Binding Path=(local:GridControlDataModel.GridControlDataModel).FilterMode, ElementName=gridControl}">
+                <local:ModelFilterMode>CollectionViewFilterPredicate</local:ModelFilterMode>
+                <local:ModelFilterMode>FilterCriteria</local:ModelFilterMode>
+            </ListBox>
+        </StackPanel>
+        <dxg:GridControl Name="gridControl" AutoExpandAllGroups="True" local:GridControlDataModel.CollectionView="{Binding}">
+            <dxg:GridControl.View>
+                <dxg:TableView AutoWidth="True" AllowEditing="False" ShowAutoFilterRow="True"  />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </DockPanel>
+</Window>

@@ -1,0 +1,49 @@
+﻿<Window x:Class="CollectionViewSupport.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:local="clr-namespace:CollectionViewSupport"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:ViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+            <CheckBox Name="isSyncCheckBox" IsChecked="True" Content="Is Synchronized With Current Item" VerticalAlignment="Center"/>
+
+            <Label Content="Filter condition: "/>
+            <ComboBox SelectedIndex="0" SelectedValue="{Binding Path=Data.Filter}" ItemsSource="{Binding Path=Filters}" DisplayMemberPath="Caption" SelectedValuePath="Filter" IsEditable="False"/>
+        </StackPanel>
+
+
+        <dxg:GridControl Name="gridControl" ItemsSource="{Binding Path=Data}" AutoPopulateColumns="True" Grid.Row="1">
+            <dxg:GridControl.View>
+                <dxg:TableView IsSynchronizedWithCurrentItem="{Binding Path=IsChecked, ElementName=isSyncCheckBox}" 
+                                   AutoWidth="True" ShowGroupPanel="False" AllowGrouping="False"
+                                   AllowEditing="False" ShowAutoFilterRow="True" />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+
+        <ListView IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=Data}" Grid.Row="1" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Number1}" Header="Number1"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Number2}" Header="Number2"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Text1}" Header="Text1"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Text2}" Header="Text2"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

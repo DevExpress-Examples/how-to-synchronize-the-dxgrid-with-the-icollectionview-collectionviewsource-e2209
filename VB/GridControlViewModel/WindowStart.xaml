@@ -1,0 +1,6 @@
+﻿<Window x:Class="GridControlViewModel.WindowStart" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="WindowStart" Height="300" Width="300">
+    <StackPanel>
+        <Button Name="button1" Click="button1_Click">DXGrid syncronized with WPF GridView</Button>
+        <Button Name="button2" Click="button2_Click">DXGrid syncronized with DXGrid</Button>
+    </StackPanel>
+</Window>

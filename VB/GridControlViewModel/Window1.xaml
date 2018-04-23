@@ -1,0 +1,38 @@
+﻿<Window x:Class="GridControlViewModel.Window1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:local="clr-namespace:GridControlViewModel" Title="Window1" Height="600" Width="800">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock>Filter condition</TextBlock>
+            <ComboBox Name="filterComboBox" SelectedIndex="0" IsEditable="False">
+                <ComboBoxItem>All items</ComboBoxItem>
+                <ComboBoxItem>Even items</ComboBoxItem>
+                <ComboBoxItem>Odd items</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <CheckBox Name="isSyncCheckBox" DockPanel.Dock="Top" IsChecked="True">Is Synchronized With Current Item</CheckBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <dxg:GridControl Name="gridControl" ItemsSource="{Binding}" AutoPopulateColumns="True" >
+                <dxg:GridControl.View>
+                    <dxg:TableView IsSynchronizedWithCurrentItem="{Binding Path=IsChecked, ElementName=isSyncCheckBox}" 
+                                   AutoWidth="True" ShowGroupPanel="False" AllowGrouping="False"
+                                   AllowEditing="False" ShowAutoFilterRow="True" />
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <ListView Name="listView" Grid.Column="1" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Text1}" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Text2}" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Number1}" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Number2}" />
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </DockPanel>
+</Window>
