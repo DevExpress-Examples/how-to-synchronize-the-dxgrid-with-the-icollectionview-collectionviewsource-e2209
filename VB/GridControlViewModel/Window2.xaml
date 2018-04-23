@@ -1,0 +1,34 @@
+﻿<Window x:Class="GridControlViewModel.Window2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxg ="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:local="clr-namespace:GridControlViewModel"
+    Title="Window2" Height="600" Width="800">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock>Filter condition</TextBlock>
+            <ComboBox Name="filterComboBox" SelectedIndex="0" IsEditable="False">
+                <ComboBoxItem>All items</ComboBoxItem>
+                <ComboBoxItem>Even items</ComboBoxItem>
+                <ComboBoxItem>Odd items</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <CheckBox Name="isSyncCheckBox" DockPanel.Dock="Top" IsChecked="True">Is Synchronized With Current Item</CheckBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <dxg:GridControl Name="gridControl" AutoExpandAllGroups="True" local:GridControlDataModel.CollectionView="{Binding}" local:GridControlDataModel.IsSynchronizedWithCurrentItem="{Binding Path=IsChecked, ElementName=isSyncCheckBox}">
+                <dxg:GridControl.View>
+                    <dxg:TableView AutoWidth="True" AllowEditing="False"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxg:GridControl Name="gridControl2" Grid.Column="1" AutoExpandAllGroups="True" local:GridControlDataModel.CollectionView="{Binding}" local:GridControlDataModel.IsSynchronizedWithCurrentItem="{Binding Path=IsChecked, ElementName=isSyncCheckBox}">
+                <dxg:GridControl.View>
+                    <dxg:TableView AutoWidth="True" AllowEditing="False"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </Grid>
+    </DockPanel>
+</Window>
