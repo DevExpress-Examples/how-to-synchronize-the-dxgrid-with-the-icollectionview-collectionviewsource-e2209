@@ -1,3 +1,10 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [MainWindow.xaml](./CS/MainWindow.xaml)
+* [MainWindow.xaml.cs](./CS/MainWindow.xaml.cs)
+* [ViewModel.cs](./CS/ViewModel.cs) (VB: [WindowStart.xaml](./VB/GridControlViewModel/WindowStart.xaml))
+<!-- default file list end -->
 # How to synchronize the DXGrid with the ICollectionView (CollectionViewSource)
 
 
